@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: gabriel-benchmark
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    disk:
+      name: gabriel-benchmark-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: APP_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_PATH
+        value: /var/data/benchmark.db
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-3-5-haiku-latest
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: LLAMA_BASE_URL
+        sync: false
+      - key: LLAMA_MODEL
+        value: llama3.1
+      - key: LLAMA_API_KEY
+        sync: false
