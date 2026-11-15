@@ -1,1 +1,0 @@
-O index.html original foi preservado visualmente e conectado às rotas do backend. O protótipo anterior usava dados fictícios; esta versão inicia sem resultados até executar uma rodada real.
